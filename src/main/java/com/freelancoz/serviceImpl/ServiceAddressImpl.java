@@ -6,6 +6,8 @@ import com.freelancoz.serviceInterface.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ServiceAddressImpl implements AddressService {
 
@@ -14,8 +16,8 @@ public class ServiceAddressImpl implements AddressService {
 
     @Override
     public Address getAddress(long id) {
-        Address address = addressRepository.findByaddressId(id);
-        return address;
+        Optional<Address> address = addressRepository.findById(id);
+                return address.get();
     }
 
     @Override
