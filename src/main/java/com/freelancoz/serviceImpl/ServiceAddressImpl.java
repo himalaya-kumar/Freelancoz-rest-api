@@ -22,5 +22,4 @@ public class ServiceAddressImpl implements AddressService {
     public void saveAddress(Address address) {
         addressRepository.save(address);
     }
-
 }
