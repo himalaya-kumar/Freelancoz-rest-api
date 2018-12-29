@@ -1,2 +1,2 @@
-# boot
-this is spring boot project
+# Freelancoz A Spring Boot Application
+This is a spring boot project
