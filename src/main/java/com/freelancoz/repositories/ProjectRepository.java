@@ -7,6 +7,4 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ProjectRepository extends CrudRepository<Project,Long>{
- //   List<Project> findByProjectId(long id);
-}
+public interface ProjectRepository extends CrudRepository<Project,Long>{ }

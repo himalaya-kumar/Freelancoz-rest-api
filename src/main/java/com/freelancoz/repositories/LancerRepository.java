@@ -5,6 +5,4 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LancerRepository extends CrudRepository<Lancer,Long> {
-   // Lancer findByLancerId(long id);
-}
+public interface LancerRepository extends CrudRepository<Lancer,Long> {}
