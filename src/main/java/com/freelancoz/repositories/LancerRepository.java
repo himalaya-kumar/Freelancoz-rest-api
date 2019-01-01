@@ -5,4 +5,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LancerRepository extends CrudRepository<Lancer,Long> {}
+public interface LancerRepository extends CrudRepository<Lancer,Long> {
+    /**
+     * TODO No of projects associated to it.
+     *
+     */
+}
