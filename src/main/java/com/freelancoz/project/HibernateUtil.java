@@ -1,6 +1,6 @@
 package com.freelancoz.project;
 
-import com.freelancoz.model.Address;
+import com.freelancoz.model.ContactInformation;
 import com.freelancoz.model.Client;
 import com.freelancoz.model.Lancer;
 import com.freelancoz.model.Project;
@@ -28,7 +28,7 @@ public class HibernateUtil {
                 standardServiceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(dbSettingPostGresDB()).build();
                 sessionFactory = new MetadataSources(standardServiceRegistry)
-                        .addAnnotatedClass(Address.class)
+                        .addAnnotatedClass(ContactInformation.class)
                         .addAnnotatedClass(Client.class)
                         .addAnnotatedClass(Project.class)
                         .addAnnotatedClass(Lancer.class)
@@ -66,13 +66,13 @@ public class HibernateUtil {
     }
 
     public static void main(String[] args) {
-        Address address = new Address("NYC","PASSADENA","12345");
-        Client client = new Client("Hi",address);
+        ContactInformation contactInformation = new ContactInformation("NYC","PASSADENA","12345");
+        Client client = new Client("Hi", contactInformation);
         Project projectOne = new Project("ProjectOne");
         Project projectTwo = new Project("ProjectTwo");
 //        client.setProjectSet(Stream.of(projectOne,projectTwo).collect(Collectors.toSet()));
-        Lancer lancer = new Lancer("one",address);
-        Lancer lancer1 = new Lancer("two",address);
+        Lancer lancer = new Lancer("one", contactInformation);
+        Lancer lancer1 = new Lancer("two", contactInformation);
         projectOne.setClient(client);
         projectTwo.setClient(client);
 

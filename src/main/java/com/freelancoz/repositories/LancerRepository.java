@@ -6,5 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LancerRepository extends CrudRepository<Lancer,Long> {
-   // Lancer findByLancerId(long id);
+    /**
+     * TODO No of projects associated to it.
+     *
+     */
 }

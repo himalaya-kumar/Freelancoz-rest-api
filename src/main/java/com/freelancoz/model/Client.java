@@ -15,11 +15,14 @@ public class Client {
     @SequenceGenerator(name = "client_id_gen",initialValue = 2000,allocationSize =1)
     private Long id;
 
+    @Version
+    private Integer version;
+
     private String name;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
-    private Address address;
+    @JoinColumn(name = "contactInfo_id")
+    private ContactInformation contactInformation;
 
     /**
      * This is an examplary code snippet of
@@ -33,13 +36,13 @@ public class Client {
      * One to many bi-directional
      *
      * @param name
-     * @param address
+     * @param contactInformation
      */
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "client",fetch = FetchType.LAZY)
     private Set<Project> projectSet = new HashSet<>();
 
-    public Client(String name,Address address) {
+    public Client(String name, ContactInformation contactInformation) {
         this.name = name;
-        this.address = address;
+        this.contactInformation = contactInformation;
     }
 }

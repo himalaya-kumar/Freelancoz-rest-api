@@ -5,9 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * A lancer would be trying buddy who like to see and have a project
@@ -17,6 +15,7 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 public class Lancer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY,generator = "lancer_id_gen")
     @SequenceGenerator(name = "lancer_id_gen",initialValue = 2000,allocationSize =1)
@@ -28,8 +27,8 @@ public class Lancer {
     private String name;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
-    private Address address;
+    @JoinColumn(name = "contactInfo_id")
+    private ContactInformation contactInformation;
 
     /**
      * TODO :: Educational Bi directional One To Many
@@ -45,13 +44,15 @@ public class Lancer {
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Project> projectList = new ArrayList<>();
 
+    //Project Id last Project worked on
+//    private Long lastProjectWorkedOn;
 
     public Lancer(String name){
         this.name = name;
     }
 
-    public Lancer(String name, Address address) {
+    public Lancer(String name, ContactInformation contactInformation) {
         this.name = name;
-        this.address = address;
+        this.contactInformation = contactInformation;
     }
 }

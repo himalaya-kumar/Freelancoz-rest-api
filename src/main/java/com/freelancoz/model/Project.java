@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A Project should have one Client and many lancer
+ * A Project should have many Client and many lancer
  * Project will be started by only one client.
  * but many lancer wish to try this project out
  * can have the data and wish to try....
@@ -16,6 +16,9 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 public class Project {
+    /**
+     * This Class will Have
+     */
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO,generator = "project_id_gen")
@@ -26,6 +29,8 @@ public class Project {
     private Integer version;
 
     private String projectName;
+
+    private String projectType;
 
     //TODO :: Educational Many To One
 //    @ManyToOne(cascade = CascadeType.ALL)
@@ -39,6 +44,14 @@ public class Project {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id")
     private Client client;
+
+    //Project Status
+
+    //Project Files
+
+    //Project Information
+
+    //Projects Will have Files to show the Information
 
     public Project(String projectName) {
         this.projectName = projectName;
