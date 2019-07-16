@@ -1,48 +1,96 @@
 package com.freelancoz.model;
 
-import lombok.*;
-
-import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+
 @Entity
-@NoArgsConstructor
 public class Client {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,generator ="client_id_gen")
-    @SequenceGenerator(name = "client_id_gen",initialValue = 2000,allocationSize =1)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Version
-    private Integer version;
-
     private String name;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "contactInfo_id")
-    private ContactInformation contactInformation;
-
-    /**
-     * This is an examplary code snippet of
-     * One to many Unidirectional
-     */
-//    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-//    @JoinTable(name = "Client_Project",joinColumns =@JoinColumn(name = "client"),inverseJoinColumns = @JoinColumn(name = "project"))
-//    private Set<Project> projectSet = new HashSet<>();
-
+    
+    @OneToOne
+    private Address address;
+    
     /**
      * One to many bi-directional
      *
      * @param name
-     * @param contactInformation
+     * @param address
      */
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "client",fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "client")
     private Set<Project> projectSet = new HashSet<>();
 
-    public Client(String name, ContactInformation contactInformation) {
+	public Client() {	}
+	
+    public Client(String name,Address address) {
         this.name = name;
-        this.contactInformation = contactInformation;
+        this.address = address;
     }
+
+	public Client(String name, Address address, Set<Project> projectSet) {
+		this.name = name;
+		this.address = address;
+		this.projectSet = projectSet;
+	}	
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		if(this.getAddress().equals(address))
+			return;
+		this.address = address;
+	}
+	
+	public Set<Project> getProjectSet() {
+		//defensive copy no body able to change the 
+		//list from outside
+		return new HashSet<Project>(projectSet);
+	}
+	
+	public void addProject(Project project) {
+		//prevent endless loop
+		if(projectSet.contains(project))
+			return;
+		projectSet.add(project);
+		project.setClient(this);
+	}
+	
+	public void removeProject(Project project) {
+		//prevent endless loop
+		if(!projectSet.contains(project))
+			return;
+		projectSet.remove(project);
+		project.setClient(null);
+	}
 }

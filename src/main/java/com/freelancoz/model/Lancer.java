@@ -1,24 +1,23 @@
 package com.freelancoz.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A lancer would be trying buddy who like to see and have a project
- * to try out....that's it for now
- */
-@Data
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Version;
+
+
 @Entity
-@NoArgsConstructor
 public class Lancer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY,generator = "lancer_id_gen")
-    @SequenceGenerator(name = "lancer_id_gen",initialValue = 2000,allocationSize =1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Version
@@ -26,33 +25,80 @@ public class Lancer {
 
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "contactInfo_id")
-    private ContactInformation contactInformation;
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
 
-    /**
-     * TODO :: Educational Bi directional One To Many
-     * one to many project
-     * @param name
-     */
-//    @OneToMany(fetch = FetchType.LAZY,mappedBy = "lancer",cascade = CascadeType.ALL)
-//    private Set<Project> projectSet = new LinkedHashSet<Project>();
-
-    /**
-     * TODO :: Educational Bi directional Many To Many
-     */
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany
     private List<Project> projectList = new ArrayList<>();
+    
+    public Lancer() { }
 
-    //Project Id last Project worked on
-//    private Long lastProjectWorkedOn;
-
-    public Lancer(String name){
+	public Lancer(String name){
         this.name = name;
     }
 
-    public Lancer(String name, ContactInformation contactInformation) {
+    public Lancer(String name, Address address) {
         this.name = name;
-        this.contactInformation = contactInformation;
+        this.address = address;
     }
+
+	public Lancer(String name, Address address, List<Project> projectList) {
+		super();
+		this.name = name;
+		this.address = address;
+		this.projectList = projectList;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public List<Project> getProjectList() {
+		return new ArrayList<>(projectList);
+	}
+	
+	public void  addProject(Project project) {
+		if(projectList.contains(project)) {
+			return;
+		}
+		projectList.add(project);
+		project.addLancer(this);
+	}
+	
+	public void removeProject(Project project) {
+		if(!projectList.contains(project)) {
+			return;
+		}
+		projectList.remove(project);
+		project.removeLancer(this);
+	}
 }
