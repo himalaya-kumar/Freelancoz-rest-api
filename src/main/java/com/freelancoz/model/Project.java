@@ -1,27 +1,23 @@
 package com.freelancoz.model;
 
-import lombok.*;
-
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A Project should have many Client and many lancer
- * Project will be started by only one client.
- * but many lancer wish to try this project out
- * can have the data and wish to try....
- */
-@Data
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Version;
+
 @Entity
-@NoArgsConstructor
 public class Project {
-    /**
-     * This Class will Have
-     */
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,generator = "project_id_gen")
+    @GeneratedValue(strategy = GenerationType.IDENTITY,generator = "project_id_gen")
     @SequenceGenerator(name = "project_id_gen",initialValue = 1000,allocationSize =1)
     private Long id;
 
@@ -30,30 +26,88 @@ public class Project {
 
     private String projectName;
 
-    private String projectType;
-
-    //TODO :: Educational Many To One
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "lancer")
-//    private Lancer lancer;
-
-    //TODO :: Educational Many To Many
     @ManyToMany(mappedBy = "projectList")
     private List<Lancer> lancerList = new ArrayList<>();
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "client_id")
+    @ManyToOne
+    @JoinColumn(name = "clientId")
     private Client client;
-
-    //Project Status
-
-    //Project Files
-
-    //Project Information
-
-    //Projects Will have Files to show the Information
 
     public Project(String projectName) {
         this.projectName = projectName;
     }
+
+	public Project() {	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+
+	public String getProjectName() {
+		return projectName;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+
+	public List<Lancer> getLancerList() {
+		return lancerList;
+	}
+
+	public void setLancerList(List<Lancer> lancerList) {
+		this.lancerList = lancerList;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client clientNew) {
+		if(sameAsFormer(clientNew)) {
+			return;
+		}
+		
+		Client clientOld = this.client;
+		this.client = clientNew;
+		
+		if(clientOld != null) {
+			clientOld.removeProject(this);
+		}
+		if(clientNew != null) {
+			clientNew.addProject(this);
+		}
+	}
+	
+	private boolean sameAsFormer(Client newClient) {
+		return client == null ? newClient == null : client.equals(newClient);
+	}
+	
+	public void addLancer(Lancer lancer) {
+		if(lancerList.contains(lancer)) {
+			return;
+		}
+		lancerList.add(lancer);
+		lancer.addProject(this);
+	}
+
+	public void removeLancer(Lancer lancer) {
+		if(!lancerList.contains(lancer)) {
+			return;
+		}
+		lancerList.remove(lancer);
+		lancer.removeProject(this);		
+	}
 }
