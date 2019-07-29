@@ -11,7 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-
+/**
+ * - A Client will have the information of every project he deployed.
+ * - A Client will have the information of every lancer he will be connected.
+ * - A Client will have to give its address. 
+ * - Time of client is staying 
+ *
+ */
 @Entity
 public class Client {
 
