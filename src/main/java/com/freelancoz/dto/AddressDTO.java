@@ -1,5 +1,8 @@
 package com.freelancoz.dto;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class AddressDTO {
 
 	private Long id;
@@ -20,5 +23,9 @@ public class AddressDTO {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+	
+	public String json() throws JsonProcessingException {
+		return new ObjectMapper().writeValueAsString(this);
 	}
 }

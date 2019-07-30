@@ -9,7 +9,11 @@ public class ProjectDTO {
 	private String projectName;
 	private List<LancerDTO> lancerDTOs = new ArrayList<>();
 	private ClientDTO clientDTO;
-
+	
+	public String json() {
+		
+		return "";
+	}
 	public Long getId() {
 		return id;
 	}
