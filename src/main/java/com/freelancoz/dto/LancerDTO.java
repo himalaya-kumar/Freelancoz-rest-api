@@ -14,12 +14,8 @@ public class LancerDTO {
 
     private AddressDTO addressDTO;
 
-    private List<ProjectDTO> projectList = new ArrayList<>();
-    
-    public String json() throws JsonProcessingException {
-    	return new ObjectMapper().writeValueAsString(this);
-    }
-    
+    private List<Long> projectidList = new ArrayList<>();
+        
 	public Long getId() {
 		return id;
 	}
@@ -44,11 +40,16 @@ public class LancerDTO {
 		this.addressDTO = addressDTO;
 	}
 
-	public List<ProjectDTO> getProjectList() {
-		return projectList;
+	public List<Long> getProjectidList() {
+		return projectidList;
 	}
 
-	public void setProjectList(List<ProjectDTO> projectList) {
-		this.projectList = projectList;
+	public void setProjectidList(List<Long> projectidList) {
+		this.projectidList = projectidList;
 	}
+	
+    public String json() throws JsonProcessingException {
+    	return new ObjectMapper().writeValueAsString(this);
+    }
+
 }

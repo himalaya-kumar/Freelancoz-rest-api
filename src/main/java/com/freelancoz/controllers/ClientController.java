@@ -31,7 +31,7 @@ public class ClientController {
 		
 		List<ClientDTO> clientDto = clientService.getAllClient()
  												 .stream()
-												 .map(new ClientDTOMapper()::from)
+												 .map(new ClientDTOMapper()::fromCleint)
 												 .collect(Collectors.toList());
 		
 		return new ResponseEntity<List<ClientDTO>> (clientDto,HttpStatus.OK);
@@ -40,7 +40,7 @@ public class ClientController {
 	@PostMapping("/getClient/{id}")
 	public ResponseEntity<ClientDTO> getClient(@PathVariable Long id) {
 		Client client =clientService.getClient(id);
-		return new ResponseEntity<ClientDTO>(clientDTOMapper.from(client),HttpStatus.OK);
+		return new ResponseEntity<ClientDTO>(clientDTOMapper.fromCleint(client),HttpStatus.OK);
 	}
 	
 	@PostMapping("/saveClient")

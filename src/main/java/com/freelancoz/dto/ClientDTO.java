@@ -3,6 +3,9 @@ package com.freelancoz.dto;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class ClientDTO {
 
 	private Long id;
@@ -11,7 +14,7 @@ public class ClientDTO {
 	
 	private AddressDTO addressDTO;
 	
-	private Set<ProjectDTO> projectDTOs = new HashSet<>();
+	private Set<Long> projectIds = new HashSet<>();
 	
 	public ClientDTO() {}
 	
@@ -38,12 +41,16 @@ public class ClientDTO {
 	public void setAddressDTO(AddressDTO addressDTO) {
 		this.addressDTO = addressDTO;
 	}
-
-	public Set<ProjectDTO> getProjectDTOs() {
-		return projectDTOs;
+	
+	public Set<Long> getProjectIds() {
+		return projectIds;
 	}
 
-	public void setProjectDTOs(Set<ProjectDTO> projectDTOs) {
-		this.projectDTOs = projectDTOs;
+	public void setProjectIds(Set<Long> projectIds) {
+		this.projectIds = projectIds;
+	}
+
+	public String json() throws JsonProcessingException {
+		return new ObjectMapper().writeValueAsString(this);
 	}
 }

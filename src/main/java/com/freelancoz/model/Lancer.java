@@ -101,4 +101,8 @@ public class Lancer {
 		projectList.remove(project);
 		project.removeLancer(this);
 	}
+
+	public void setProjectList(List<Project> projectList) {
+		this.projectList = projectList;
+	}
 }

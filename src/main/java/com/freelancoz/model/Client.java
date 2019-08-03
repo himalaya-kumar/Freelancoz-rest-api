@@ -73,8 +73,6 @@ public class Client {
 	}
 
 	public void setAddress(Address address) {
-		if(this.getAddress().equals(address))
-			return;
 		this.address = address;
 	}
 	
@@ -98,5 +96,9 @@ public class Client {
 			return;
 		projectSet.remove(project);
 		project.setClient(null);
+	}
+
+	public void setProjectSet(Set<Project> projectSet) {
+		this.projectSet = projectSet;
 	}
 }
