@@ -99,4 +99,8 @@ public class Client {
 		projectSet.remove(project);
 		project.setClient(null);
 	}
+
+	public void setProjectSet(Set<Project> projectSet) {
+		this.projectSet = projectSet;
+	}
 }

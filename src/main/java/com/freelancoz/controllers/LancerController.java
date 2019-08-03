@@ -30,6 +30,6 @@ public class LancerController {
 	@PostMapping("/getProject/{id}")
 	public ProjectDTO getProject(@PathVariable Long id) {
 		Project project = projectService.getProject(id);
-		return projectDTOMapper.fromObj(project);
+		return projectDTOMapper.fromProject(project);
 	}
 }
