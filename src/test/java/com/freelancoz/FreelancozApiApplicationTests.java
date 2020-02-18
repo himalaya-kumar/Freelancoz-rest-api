@@ -1,4 +1,4 @@
-package com.freelancoz.project;
+package com.freelancoz;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

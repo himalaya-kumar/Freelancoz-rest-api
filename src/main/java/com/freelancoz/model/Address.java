@@ -5,6 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Version;
 
+/**
+ * - A Way to figure out whose address it is(Probably boolean)
+ * 
+ *
+ */
 @Entity
 public class Address {
 	
@@ -16,10 +21,6 @@ public class Address {
 	private Integer version;
 	
 	private String city;
-	
-//	private Lancer lancer;
-//	
-//	private Client client;
 
 	public Address() {	}
 

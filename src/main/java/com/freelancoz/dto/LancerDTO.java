@@ -3,6 +3,9 @@ package com.freelancoz.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class LancerDTO {
 
     private Long id;
@@ -11,8 +14,8 @@ public class LancerDTO {
 
     private AddressDTO addressDTO;
 
-    private List<ProjectDTO> projectList = new ArrayList<>();
-
+    private List<Long> projectidList = new ArrayList<>();
+        
 	public Long getId() {
 		return id;
 	}
@@ -37,11 +40,16 @@ public class LancerDTO {
 		this.addressDTO = addressDTO;
 	}
 
-	public List<ProjectDTO> getProjectList() {
-		return projectList;
+	public List<Long> getProjectidList() {
+		return projectidList;
 	}
 
-	public void setProjectList(List<ProjectDTO> projectList) {
-		this.projectList = projectList;
+	public void setProjectidList(List<Long> projectidList) {
+		this.projectidList = projectidList;
 	}
+	
+    public String json() throws JsonProcessingException {
+    	return new ObjectMapper().writeValueAsString(this);
+    }
+
 }

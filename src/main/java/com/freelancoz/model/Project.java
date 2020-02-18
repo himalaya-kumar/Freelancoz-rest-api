@@ -13,6 +13,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 
+/**
+ * - A Project will some period of time. 
+ * - It will have knowledge of clients and projects with which he is associated with.
+ * - date of project started
+ * - date of project when will it closes.
+ * - 
+ */
 @Entity
 public class Project {
 
