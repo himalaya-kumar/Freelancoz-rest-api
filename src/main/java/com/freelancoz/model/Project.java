@@ -13,6 +13,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * - A Project will some period of time. 
  * - It will have knowledge of clients and projects with which he is associated with.
@@ -20,6 +25,11 @@ import javax.persistence.Version;
  * - date of project when will it closes.
  * - 
  */
+
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Project {
 
@@ -40,81 +50,4 @@ public class Project {
     @JoinColumn(name = "clientId")
     private Client client;
 
-    public Project(String projectName) {
-        this.projectName = projectName;
-    }
-
-	public Project() {	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Integer getVersion() {
-		return version;
-	}
-
-	public void setVersion(Integer version) {
-		this.version = version;
-	}
-
-	public String getProjectName() {
-		return projectName;
-	}
-
-	public void setProjectName(String projectName) {
-		this.projectName = projectName;
-	}
-
-	public List<Lancer> getLancerList() {
-		return lancerList;
-	}
-
-	public void setLancerList(List<Lancer> lancerList) {
-		this.lancerList = lancerList;
-	}
-
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client clientNew) {
-		if(sameAsFormer(clientNew)) {
-			return;
-		}
-		
-		Client clientOld = this.client;
-		this.client = clientNew;
-		
-		if(clientOld != null) {
-			clientOld.removeProject(this);
-		}
-		if(clientNew != null) {
-			clientNew.addProject(this);
-		}
-	}
-	
-	private boolean sameAsFormer(Client newClient) {
-		return client == null ? newClient == null : client.equals(newClient);
-	}
-	
-	public void addLancer(Lancer lancer) {
-		if(lancerList.contains(lancer)) {
-			return;
-		}
-		lancerList.add(lancer);
-		lancer.addProject(this);
-	}
-
-	public void removeLancer(Lancer lancer) {
-		if(!lancerList.contains(lancer)) {
-			return;
-		}
-		lancerList.remove(lancer);
-		lancer.removeProject(this);		
-	}
 }
