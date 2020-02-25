@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.freelancoz.model.Client;
 import com.freelancoz.repositories.AddressRepository;
 import com.freelancoz.service.ClientService;
 import com.freelancoz.service.LancerService;

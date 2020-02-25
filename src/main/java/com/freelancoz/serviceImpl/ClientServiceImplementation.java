@@ -34,7 +34,6 @@ public class ClientServiceImplementation implements ClientService{
 	public List<Client> getAllClient() {
 		return StreamSupport.stream(clientRepository.findAll().spliterator(), false).collect(Collectors.toList());
 	}
-
 	
 	@Override
 	public void saveOrUpdateClient(Client client) {

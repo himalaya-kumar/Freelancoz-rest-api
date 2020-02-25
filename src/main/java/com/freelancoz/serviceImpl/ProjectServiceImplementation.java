@@ -23,7 +23,6 @@ public class ProjectServiceImplementation implements ProjectService {
 	
 	@Override
 	public Boolean isProjectExist(Long projectId) {
-		
 		return projectRepository.existsById(projectId);
 	}
 
