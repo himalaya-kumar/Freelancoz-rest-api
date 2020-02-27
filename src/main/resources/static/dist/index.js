@@ -29518,12 +29518,11 @@ module.exports = g;
 /*!*************************************************!*\
   !*** ./src/main/resources/ReactAPP/ReactApp.js ***!
   \*************************************************/
-/*! exports provided: default */
+/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Contact; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _css_ReactApp_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./css/ReactApp.css */ "./src/main/resources/ReactAPP/css/ReactApp.css");
@@ -29554,6 +29553,18 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+var Home = function Home() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Home..."));
+};
+
+var About = function About() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "About..."));
+};
+
+var Contact = function Contact() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Contact..."));
+};
+
 var ReactApp =
 /*#__PURE__*/
 function (_Component) {
@@ -29568,57 +29579,23 @@ function (_Component) {
   _createClass(ReactApp, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "About"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Contact")));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["HashRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
+        path: "/home",
+        component: Home
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
+        path: "/about",
+        component: About
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
+        path: "/Contact",
+        component: Contact
+      })));
     }
   }]);
 
   return ReactApp;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-var Contact =
-/*#__PURE__*/
-function (_Component2) {
-  _inherits(Contact, _Component2);
-
-  function Contact() {
-    _classCallCheck(this, Contact);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(Contact).apply(this, arguments));
-  }
-
-  _createClass(Contact, [{
-    key: "render",
-    value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "contact .."));
-    }
-  }]);
-
-  return Contact;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-
-
-
-function routing() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Router"], {
-    history: browerHistory
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
-    path: "/",
-    component: ReactApp
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(IndexRoute, {
-    component: Home
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
-    path: "home",
-    component: Home
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
-    path: "about",
-    component: About
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
-    path: "contact",
-    component: Contact
-  })));
-}
-
-react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render(routing, document.getElementById('reactApp'));
+react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ReactApp, null), document.getElementById('reactApp'));
 
 /***/ }),
 
