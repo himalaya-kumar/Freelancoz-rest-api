@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -45,6 +47,7 @@ public class Client {
      * @param name
      * @param address
      */
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "client")
-    private Set<Project> projectSet = new HashSet<>();
+    private Set<Project> projectSet;
 }

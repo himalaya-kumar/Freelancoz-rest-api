@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.freelancoz.model.Client;
+import com.freelancoz.model.Project;
 import com.freelancoz.repositories.ClientRepository;
 import com.freelancoz.service.ClientService;
 

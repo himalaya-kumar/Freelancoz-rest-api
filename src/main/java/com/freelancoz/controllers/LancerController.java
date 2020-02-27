@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.freelancoz.model.Project;
 import com.freelancoz.service.ProjectService;
 
-@RestController
+@RestController("lancer")
 public class LancerController {
 
 	@Autowired

@@ -1,7 +1,7 @@
 package com.freelancoz.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.freelancoz.model.Address;
 
-public interface AddressRepository extends CrudRepository<Address, Long>{}
+public interface AddressRepository extends JpaRepository<Address, Long>{}

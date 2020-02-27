@@ -1,7 +1,7 @@
 package com.freelancoz.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.freelancoz.model.Client;
 
-public interface ClientRepository extends CrudRepository<Client, Long>{}
+public interface ClientRepository extends JpaRepository<Client, Long>{}

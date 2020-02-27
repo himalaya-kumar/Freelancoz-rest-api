@@ -1,7 +1,7 @@
 package com.freelancoz.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.freelancoz.model.Lancer;
 
-public interface LancerRepository extends CrudRepository<Lancer, Long>{}
+public interface LancerRepository extends JpaRepository<Lancer, Long>{}
