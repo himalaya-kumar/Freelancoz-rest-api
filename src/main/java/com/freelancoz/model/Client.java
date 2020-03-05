@@ -11,6 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * - A Client will have the information of every project he deployed.
  * - A Client will have the information of every lancer he will be connected.
@@ -18,6 +25,10 @@ import javax.persistence.OneToOne;
  * - Time of client is staying 
  *
  */
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Client {
 
@@ -36,69 +47,7 @@ public class Client {
      * @param name
      * @param address
      */
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "client")
-    private Set<Project> projectSet = new HashSet<>();
-
-	public Client() {	}
-	
-    public Client(String name,Address address) {
-        this.name = name;
-        this.address = address;
-    }
-
-	public Client(String name, Address address, Set<Project> projectSet) {
-		this.name = name;
-		this.address = address;
-		this.projectSet = projectSet;
-	}	
-	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-	
-	public Set<Project> getProjectSet() {
-		//defensive copy no body able to change the 
-		//list from outside
-		return new HashSet<Project>(projectSet);
-	}
-	
-	public void addProject(Project project) {
-		//prevent endless loop
-		if(projectSet.contains(project))
-			return;
-		projectSet.add(project);
-		project.setClient(this);
-	}
-	
-	public void removeProject(Project project) {
-		//prevent endless loop
-		if(!projectSet.contains(project))
-			return;
-		projectSet.remove(project);
-		project.setClient(null);
-	}
-
-	public void setProjectSet(Set<Project> projectSet) {
-		this.projectSet = projectSet;
-	}
+    private Set<Project> projectSet;
 }

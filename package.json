@@ -1,0 +1,35 @@
+{
+	"name": "freelancoz-rest-api",
+	"version": "0.0.1",
+	"description": "A react application for rest api",
+	"main": "src/main/resources/static/dist/index.js",
+	"dependencies": {
+		"@babel/core": "^7.5.0",
+		"@babel/preset-env": "^7.5.0",
+		"@babel/preset-react": "^7.0.0",
+		"babel-loader": "^8.0.6",
+		"bootstrap": "^4.4.1",
+		"css-loader": "^3.0.0",
+		"react": "~16.8.6",
+		"react-dom": "~16.8.6",
+		"react-router-dom": "^5.1.2",
+		"style-loader": "^0.23.1",
+		"webpack": "^4.35.3",
+		"webpack-cli": "^3.3.5"
+	},
+	"devDependencies": {},
+	"scripts": {
+		"test": "react_todo_test",
+		"start": "nodemon ReactApp"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/himalaya-kumar/Freelancoz-rest-api.git"
+	},
+	"bugs": {
+		"url": "https://github.com/himalaya-kumar/Freelancoz-rest-api/issues"
+	},
+	"author": "Himalaya Kumar",
+	"license": "ISC",
+	"homepage": "https://github.com/himalaya-kumar/Freelancoz-rest-api#readme"
+}

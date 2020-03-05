@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.freelancoz.model.Lancer;
 import com.freelancoz.repositories.LancerRepository;
 import com.freelancoz.service.LancerService;
+
 @Transactional
 @Service
 public class LancerServiceImplementation implements LancerService {
@@ -34,10 +35,8 @@ public class LancerServiceImplementation implements LancerService {
 		return StreamSupport.stream(lancerRepository.findAll().spliterator(), false).collect(Collectors.toList());
 	}
 
-
 	@Override
 	public void saveOrUpdateLancer(Lancer lancer) {
-		
 		lancerRepository.save(lancer);
 	}
 
