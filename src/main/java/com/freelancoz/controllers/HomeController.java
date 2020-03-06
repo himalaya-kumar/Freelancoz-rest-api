@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import springfox.documentation.spring.web.json.Json;
+
 @CrossOrigin
 @RestController
 @RequestMapping("home")
@@ -25,9 +27,10 @@ public class HomeController {
 	private HttpServletRequest httpServletRequest;
 	
 	@GetMapping("/checkGet")
-	public ResponseEntity<String> checkConnection() {
+	public ResponseEntity<Json> checkConnection(){
 		LOG.info("Check for connection");
-		return new ResponseEntity<String>("connectedGet",HttpStatus.OK);
+		Json json = new Json("[{\"home\":\"connectedGet\"}]");
+		return new ResponseEntity<Json>(json,HttpStatus.OK);
 	}
 	
 	@PostMapping("/checkPost")
