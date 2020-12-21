@@ -64,7 +64,9 @@ task buildReactApp(type: NodeTask, dependsOn: 'npmInstall') {
     ]
 }
 
-
 processResources.dependsOn 'buildReactApp'
 clean.delete << file('node_modules')
-clean.delete << file('src/main/resources/webapp/dist')
+clean.delete << file('src/main/resources/static/dist')
+
+
+apply plugin: 'idea'

@@ -189,7 +189,7 @@ module.exports = _inheritsLoose;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "#main {\r\n    background-color: aquamarine;\r\n}", ""]);
+exports.push([module.i, "#main {\r\n    background-color: aquamarine;\r\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -29553,47 +29553,71 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var Home = function Home() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Home..."));
+var LoginApplication = function LoginApplication() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, " this is login component"));
 };
 
-var About = function About() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "About..."));
-};
-
-var Contact = function Contact() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Contact..."));
-};
-
-var ReactApp =
+var DisplayGet =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(ReactApp, _Component);
+  _inherits(DisplayGet, _Component);
 
-  function ReactApp() {
-    _classCallCheck(this, ReactApp);
+  function DisplayGet() {
+    var _this;
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ReactApp).apply(this, arguments));
+    _classCallCheck(this, DisplayGet);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(DisplayGet).call(this));
+    _this.state = {
+      home: '',
+      clients: []
+    };
+    return _this;
   }
 
-  _createClass(ReactApp, [{
+  _createClass(DisplayGet, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.fetchGet();
+    }
+  }, {
+    key: "fetchGet",
+    value: function fetchGet() {
+      var _this2 = this;
+
+      fetch("home/checkGet").then(function (response) {
+        return response.json();
+      }).then(function (res) {
+        console.log(res[0].home);
+
+        _this2.setState({
+          home: res[0].home
+        });
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["HashRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
-        path: "/home",
-        component: Home
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
-        path: "/about",
-        component: About
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
-        path: "/Contact",
-        component: Contact
-      })));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(LoginApplication, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello from the other way ", this.state.home));
     }
   }]);
 
-  return ReactApp;
+  return DisplayGet;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+var Home = function Home() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, " Hello from the other place"));
+};
+
+var ReactApp = function ReactApp() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["HashRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
+    path: "/checkGet",
+    component: DisplayGet
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
+    path: "/home",
+    component: Home
+  })));
+};
 
 react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ReactApp, null), document.getElementById('reactApp'));
 
