@@ -1,6 +1,5 @@
 package com.freelancoz.model;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
